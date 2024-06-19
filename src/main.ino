@@ -9,7 +9,8 @@ MFRC522 rfid(SS_PIN, RST_PIN); // PASSAGEM DE PARÂMETROS REFERENTE AOS PINOS
 
 const int pinoLedVerde = 3;    // PINO DIGITAL REFERENTE AO LED VERDE
 const int pinoLedVermelho = 2; // PINO DIGITAL REFERENTE AO LED VERMELHO
-
+const int DELAY_TIME = 3000;
+const char* VALID_TAG = "TAG";
 void setup() {
 
   Wire.begin();    // INICIALIZA A BIBLIOTECA WIRE
@@ -27,6 +28,14 @@ void loop() {
   leituraRfid(); // CHAMA A FUNÇÃO RESPONSÁVEL PELA VALIDAÇÃO DA TAG RFID
 }
 
+char* formatID(byte *buffer, char *output) {
+  for (byte i = 0; i < 4; i++) {
+    sprintf(&output[i*3], "%02X:", buffer[i]);
+  }
+  output[11] = '\0'; // null terminate the string
+  return output;
+}
+
 // FUNÇÃO DE VALIDAÇÃO DA TAG RFID
 void leituraRfid() {
   if (!rfid.PICC_IsNewCardPresent() ||
@@ -36,26 +45,19 @@ void leituraRfid() {
     return; // RETORNA PARA LER NOVAMENTE
 
   /***INICIO BLOCO DE CÓDIGO RESPONSÁVEL POR GERAR A TAG RFID LIDA***/
-  String strID = "";
-  for (byte i = 0; i < 4; i++) {
-    strID += (rfid.uid.uidByte[i] < 0x10 ? "0" : "") +
-             String(rfid.uid.uidByte[i], HEX) + (i != 3 ? ":" : "");
-  }
-  strID.toUpperCase();
+  char strID[12];
+  formatID(rfid.uid.uidByte, strID);
   /***FIM DO BLOCO DE CÓDIGO RESPONSÁVEL POR GERAR A TAG RFID LIDA***/
 
-  /* Modificar o Bloco TAG, para a nossa */
-  if (strID.indexOf("TAG") >=
-      0) { // SE O ENDEREÇO DA TAG LIDA FOR IGUAL AO ENDEREÇO INFORMADO, FAZ
-    digitalWrite(pinoLedVerde, HIGH); // LIGA O LED VERDE
-    delay(3000);                      // INTERVALO DE 6 SEGUNDOS
-    digitalWrite(pinoLedVerde, LOW);  // DESLIGA O LED VERDE
-  } else { // SENÃO, FAZ (CASO A TAG LIDA NÃO SEJÁ VÁLIDA)
-    digitalWrite(pinoLedVermelho, HIGH); // LIGA O LED VERMELHO
-    delay(3000);                         ////INTERVALO DE 6 SEGUNDOS
-    digitalWrite(pinoLedVermelho, LOW);  // DESLIGA O LED VERDE
+if (strstr(strID, VALID_TAG) != NULL) {
+    digitalWrite(pinoLedVerde, HIGH);
+    delay(DELAY_TIME);
+    digitalWrite(pinoLedVerde, LOW);
+  } else {
+    digitalWrite(pinoLedVermelho, HIGH);
+    delay(DELAY_TIME);
+    digitalWrite(pinoLedVermelho, LOW);
   }
-
   rfid.PICC_HaltA();      // PARADA DA LEITURA DO CARTÃO
   rfid.PCD_StopCrypto1(); // PARADA DA CRIPTOGRAFIA NO PCD
 }

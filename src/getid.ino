@@ -12,23 +12,24 @@ void setup() {
   rfid.PCD_Init(); //INICIALIZA MFRC522
 }
 
-void loop() {
-  if (!rfid.PICC_IsNewCardPresent() || !rfid.PICC_ReadCardSerial()) //VERIFICA SE O CARTÃO PRESENTE NO LEITOR É DIFERENTE DO ÚLTIMO CARTÃO LIDO. CASO NÃO SEJA, FAZ
-    return; //RETORNA PARA LER NOVAMENTE
-
-  /***INICIO BLOCO DE CÓDIGO RESPONSÁVEL POR GERAR A TAG RFID LIDA***/
-  String strID = "";
+char* formatID(byte *buffer, char *output) {
   for (byte i = 0; i < 4; i++) {
-    strID +=
-    (rfid.uid.uidByte[i] < 0x10 ? "0" : "") +
-    String(rfid.uid.uidByte[i], HEX) +
-    (i!=3 ? ":" : "");
+    sprintf(&output[i*3], "%02X:", buffer[i]);
   }
-  strID.toUpperCase();
-  /***FIM DO BLOCO DE CÓDIGO RESPONSÁVEL POR GERAR A TAG RFID LIDA***/
+  output[11] = '\0'; // null terminate the string
+  return output;
+}
 
-  Serial.print("Identificador (UID) da tag: "); //IMPRIME O TEXTO NA SERIAL
-  Serial.println(strID); //IMPRIME NA SERIAL O UID DA TAG RFID
-  rfid.PICC_HaltA(); //PARADA DA LEITURA DO CARTÃO
-  rfid.PCD_StopCrypto1(); //PARADA DA CRIPTOGRAFIA NO PCD
+void loop() {
+  if (!rfid.PICC_IsNewCardPresent() || !rfid.PICC_ReadCardSerial())
+    return;
+
+  char strID[12];
+  formatID(rfid.uid.uidByte, strID);
+
+  Serial.print("Identificador (UID) da tag: ");
+  Serial.println(strID);
+
+  rfid.PICC_HaltA();
+  rfid.PCD_StopCrypto1();
 }
