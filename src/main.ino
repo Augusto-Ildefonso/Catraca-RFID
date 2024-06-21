@@ -2,8 +2,8 @@
 #include <SPI.h>    
 #include <Wire.h>   
 
-#define SS_PIN 10 // PINO SDA
-#define RST_PIN 9 // PINO DE RESET
+#define SS_PIN 10
+#define RST_PIN 9
 
 MFRC522 rfid(SS_PIN, RST_PIN);
 
