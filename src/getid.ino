@@ -1,31 +1,37 @@
-#include <SPI.h> //INCLUSÃO DE BIBLIOTECA
-#include <MFRC522.h> //INCLUSÃO DE BIBLIOTECA
+#include <SPI.h>
+#include <MFRC522.h>
 
-#define SS_PIN 10 //PINO SDA
-#define RST_PIN 9 //PINO DE RESET
+#define SS_PIN 10
+#define RST_PIN 9
 
-MFRC522 rfid(SS_PIN, RST_PIN); //PASSAGEM DE PARÂMETROS REFERENTE AOS PINOS
+MFRC522 rfid(SS_PIN, RST_PIN);
 
+/**
+* Essa função inicializa a serial, o SPI e a MFRC522
+*/
 void setup() {
-  Serial.begin(9600); //INICIALIZA A SERIAL
-  SPI.begin(); //INICIALIZA O BARRAMENTO SPI
-  rfid.PCD_Init(); //INICIALIZA MFRC522
+  Serial.begin(9600);
+  SPI.begin();
+  rfid.PCD_Init(); 
 }
 
-char* formatID(byte *buffer, char *output) {
+char* formatar_id(byte *buffer, char *output) {
   for (byte i = 0; i < 4; i++) {
     sprintf(&output[i*3], "%02X:", buffer[i]);
   }
-  output[11] = '\0'; // null terminate the string
+  output[11] = '\0';
   return output;
 }
 
+/**
+* Essa é a função principal
+*/
 void loop() {
   if (!rfid.PICC_IsNewCardPresent() || !rfid.PICC_ReadCardSerial())
     return;
 
   char strID[12];
-  formatID(rfid.uid.uidByte, strID);
+  formatar_id(rfid.uid.uidByte, strID);
 
   Serial.print("Identificador (UID) da tag: ");
   Serial.println(strID);
