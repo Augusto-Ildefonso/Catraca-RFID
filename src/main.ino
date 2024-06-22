@@ -7,10 +7,10 @@
 
 MFRC522 rfid(SS_PIN, RST_PIN);
 
-const int pinoLedVerde = 3;    
-const int pinoLedVermelho = 2;
-const int DELAY_TIME = 3000;
-const char* VALID_TAG = "TAG";
+const int led_verde = 3;    
+const int led_vermelho = 2;
+const int tempo_delay = 3000;
+const char* tag_valida = "TAG";
 void setup() {
 
   // Inicializando biblioteca, barramento SPI e MFRC522
@@ -18,11 +18,11 @@ void setup() {
   SPI.begin();     
   rfid.PCD_Init();
 
-  pinMode(pinoLedVerde, OUTPUT);   
-  pinMode(pinoLedVermelho, OUTPUT);
+  pinMode(led_verde, OUTPUT);   
+  pinMode(led_vermelho, OUTPUT);
 
-  digitalWrite(pinoLedVerde, LOW);
-  digitalWrite(pinoLedVermelho, LOW);
+  digitalWrite(led_verde, LOW);
+  digitalWrite(led_vermelho, LOW);
 }
 
 /**
@@ -49,17 +49,17 @@ void leituraRfid() {
   }
   
   // Gera a tag RFID lida
-  char strID[12];
-  formatID(rfid.uid.uidByte, strID);
+  char id[12];
+  formatID(rfid.uid.uidByte, id);
   
-if (strstr(strID, VALID_TAG) != NULL) {
-    digitalWrite(pinoLedVerde, HIGH);
+if (strstr(strID, tag_valida) != NULL) {
+    digitalWrite(led_vermelho, HIGH);
     delay(DELAY_TIME);
-    digitalWrite(pinoLedVerde, LOW);
+    digitalWrite(led_verde, LOW);
   } else {
-    digitalWrite(pinoLedVermelho, HIGH);
-    delay(DELAY_TIME);
-    digitalWrite(pinoLedVermelho, LOW);
+    digitalWrite(led_verde, HIGH);
+    delay(tempo_delay);
+    digitalWrite(led_vermelho, LOW);
   }
 
   // Para leitura no cartão e criptografia no PCD
