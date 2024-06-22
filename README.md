@@ -16,3 +16,9 @@ Segue agora o circuito das ligações dos leds com o arduino. Tanto esse circuit
 ## Imagens do projeto
 
 ## Vídeo
+
+## Alunos
+Augusto Fernandes Ildefonso ![(Github)](https://github.com/Augusto-Ildefonso)
+Lucas Alves da Silva 
+Marcelo Caporalli Filho ![(Github)](https://github.com/MarceloCFilho)
+Marco Tulio Mello Silva ![(Github)](https://github.com/Marco-Normal)
