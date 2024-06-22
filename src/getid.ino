@@ -30,11 +30,11 @@ void loop() {
   if (!rfid.PICC_IsNewCardPresent() || !rfid.PICC_ReadCardSerial())
     return;
 
-  char strID[12];
-  formatar_id(rfid.uid.uidByte, strID);
+  char id[12];
+  formatar_id(rfid.uid.uidByte, id);
 
   Serial.print("Identificador (UID) da tag: ");
-  Serial.println(strID);
+  Serial.println(id);
 
   rfid.PICC_HaltA();
   rfid.PCD_StopCrypto1();
