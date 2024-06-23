@@ -16,6 +16,7 @@ Segue agora o circuito das ligações dos leds com o arduino. Tanto esse circuit
 ## Imagens do projeto
 
 ## Vídeo
+O vídeo de funcionamento pode ser acessado pelo seguinte link: [Projeto Catraca RFID](https://youtu.be/XERBfMdBD_g)
 
 ## Alunos
 Augusto Fernandes Ildefonso [(Github)](https://github.com/Augusto-Ildefonso)  
