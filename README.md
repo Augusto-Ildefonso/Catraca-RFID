@@ -16,22 +16,19 @@ Segue agora o circuito das ligações dos leds com o arduino. Tanto esse circuit
 ## Imagens do projeto
 
 ### Catraca aguardando para ler um cartão que será o cartáo permitido
-![Catraca Aguardando](https://github.com/Augusto-Ildefonso/Catraca-RFID/blob/1c789fe547990f472d3ed423448849fe37e4b989/figs/Catraca_Leitura.jpeg)
-
+![Catraca Aguardando](./figs/Catraca_Leitura.jpeg)
 ### Catraca liberada
-![Catraca Liberada](https://github.com/Augusto-Ildefonso/Catraca-RFID/blob/1c789fe547990f472d3ed423448849fe37e4b989/figs/Catraca_Liberada.jpeg)
-
+![Catraca Liberada](./figs/Catraca_Liberada.jpeg)
 ### Catraca bloqueada
-![Catraca bloqueada](https://github.com/Augusto-Ildefonso/Catraca-RFID/blob/1c789fe547990f472d3ed423448849fe37e4b989/figs/Catraca_Fechada.jpeg)
-
+![Catraca bloqueada](./figs/Catraca_Fechada.jpeg)
 ## Vídeo
 O vídeo de funcionamento pode ser acessado pelo seguinte link: [Projeto Catraca RFID](https://youtu.be/XERBfMdBD_g)
 
 ## Alunos
-Augusto Fernandes Ildefonso [(Github)](https://github.com/Augusto-Ildefonso)  
+Augusto Fernandes Ildefonso [(Github)](https://github.com/Augusto-Ildefonso) 
 
-Lucas Alves da Silva  
+Lucas Alves da Silva 
 
-Marcelo Caporalli Filho [(Github)](https://github.com/MarceloCFilho)  
+Marcelo Caporalli Filho [(Github)](https://github.com/MarceloCFilho) 
 
 Marco Tulio Mello Silva [(Github)](https://github.com/Marco-Normal)

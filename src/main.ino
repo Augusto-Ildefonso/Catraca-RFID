@@ -6,15 +6,15 @@
 #define RST_PIN 9
 
 MFRC522 rfid(SS_PIN, RST_PIN);
-int cont = 1;
-char id_org[12];
+int cadastro = 1;
+char id_cad[12];
 const int led_verde = 3;
 const int led_vermelho = 2;
 const int led_teste = 8;
 const int tempo_delay = 1000;
 
 void setup() {
-  int cond = 1;
+  int cadastro = 1;
   // Inicializando biblioteca, barramento SPI e MFRC522
   Wire.begin();
   SPI.begin();
@@ -36,7 +36,7 @@ void loop() {
     if (!rfid.PICC_IsNewCardPresent() || !rfid.PICC_ReadCardSerial())
       return;
 
-    formatar_id(rfid.uid.uidByte, id_org);
+    formatar_id(rfid.uid.uidByte, id_cad);
 
     rfid.PICC_HaltA();
     rfid.PCD_StopCrypto1();
@@ -71,7 +71,7 @@ void leituraRfid() {
   char id[12];
   formatar_id(rfid.uid.uidByte, id);
 
-  if (strstr(id, id_org) != NULL) {
+  if (strstr(id, id_cad) != NULL) {
     digitalWrite(led_verde, HIGH);
     delay(tempo_delay);
     digitalWrite(led_verde, LOW);
