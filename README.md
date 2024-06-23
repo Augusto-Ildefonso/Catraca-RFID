@@ -15,6 +15,15 @@ Segue agora o circuito das ligações dos leds com o arduino. Tanto esse circuit
 
 ## Imagens do projeto
 
+### Catraca aguardando para ler um cartão que será o cartáo permitido
+![Catraca Aguardando](https://github.com/Augusto-Ildefonso/Catraca-RFID/blob/1c789fe547990f472d3ed423448849fe37e4b989/figs/Catraca_Leitura.jpeg)
+
+### Catraca liberada
+![Catraca Liberada](https://github.com/Augusto-Ildefonso/Catraca-RFID/blob/1c789fe547990f472d3ed423448849fe37e4b989/figs/Catraca_Liberada.jpeg)
+
+### Catraca bloqueada
+![Catraca bloqueada](https://github.com/Augusto-Ildefonso/Catraca-RFID/blob/1c789fe547990f472d3ed423448849fe37e4b989/figs/Catraca_Fechada.jpeg)
+
 ## Vídeo
 O vídeo de funcionamento pode ser acessado pelo seguinte link: [Projeto Catraca RFID](https://youtu.be/XERBfMdBD_g)
 
