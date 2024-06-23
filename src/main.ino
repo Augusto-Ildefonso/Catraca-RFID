@@ -12,7 +12,7 @@ const int led_verde = 3;
 const int led_vermelho = 2;
 const int led_teste = 8;
 const int tempo_delay = 1000;
-const char *tag_valida = "A3:79:B1:0E";
+
 void setup() {
   int cond = 1;
   // Inicializando biblioteca, barramento SPI e MFRC522
@@ -25,19 +25,18 @@ void setup() {
   digitalWrite(led_teste, LOW);
   digitalWrite(led_verde, LOW);
   digitalWrite(led_vermelho, LOW);
-  // formatID(rfid.uid.uidByte, id_org);
 }
 
 /**
- * Função principal
- */
+* Função principal
+*/
 void loop() {
   digitalWrite(led_teste, HIGH);
   while (cont) {
     if (!rfid.PICC_IsNewCardPresent() || !rfid.PICC_ReadCardSerial())
       return;
 
-    formatID(rfid.uid.uidByte, id_org);
+    formatar_id(rfid.uid.uidByte, id_org);
 
     rfid.PICC_HaltA();
     rfid.PCD_StopCrypto1();
@@ -47,7 +46,10 @@ void loop() {
   leituraRfid();
 }
 
-char *formatID(byte *buffer, char *output) {
+/**
+* Essa função formata o ID do cartão
+*/
+char *formatar_id(byte *buffer, char *output) {
 
   for (byte i = 0; i < 4; i++) {
     sprintf(&output[i * 3], "%02X:", buffer[i]);
@@ -57,9 +59,9 @@ char *formatID(byte *buffer, char *output) {
   return output;
 }
 
-/*
- * Essa função realiza a leitura do cartão RFID
- */
+/**
+* Essa função realiza a leitura do cartão RFID
+*/
 void leituraRfid() {
   if (!rfid.PICC_IsNewCardPresent() || !rfid.PICC_ReadCardSerial()) {
     return;
@@ -67,7 +69,7 @@ void leituraRfid() {
 
   // Gera a tag RFID lida
   char id[12];
-  formatID(rfid.uid.uidByte, id);
+  formatar_id(rfid.uid.uidByte, id);
 
   if (strstr(id, id_org) != NULL) {
     digitalWrite(led_verde, HIGH);
