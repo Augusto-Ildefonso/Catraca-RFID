@@ -1,6 +1,7 @@
 # Catraca-RFID
 
 ## Software
+No código utilizamos a biblioteca MFRC522.h, SPI.h e Wire.h para poder comunicar com a placa RC522 (placa RFID utilizada no circuito). Ele possui 4 funções: setup (função padrão do arduino na qual configuramos os pinos e inicializamos bibliotecas), loop (função que executa o código principal, também padrão do arduino), formatar_id (formata o valor lido pela placa para o formato do id padrão) e leituraRFID (função que lê o cartão RFID). O código pode ser encontrado aqui no repositório com o nome main.ino.
 
 ## Circuito
 Como não foi possível montar no Tinkercad o circuito, pois não havia o componente da placa RFID, encontramos esta imagem que ilustra as ligações da placa com o arduino. Vale ressaltar que no projeto a placa foi encaixada na protoboard e as conexṍes foram feitas através dela.
