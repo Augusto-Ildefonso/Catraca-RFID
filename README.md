@@ -28,7 +28,7 @@ O vídeo de funcionamento pode ser acessado pelo seguinte link: [Projeto Catraca
 ## Alunos
 Augusto Fernandes Ildefonso [(Github)](https://github.com/Augusto-Ildefonso) 
 
-Lucas Alves da Silva 
+Lucas Alves da Silva [(Github)](https://github.com/lucassilvausp) 
 
 Marcelo Caporalli Filho [(Github)](https://github.com/MarceloCFilho) 
 
