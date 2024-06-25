@@ -1,3 +1,7 @@
+/*
+* O código abaixo foi baseado no código de Blogmasterworkshop, o link para o site que contém o código encontra-se no README.md
+*/
+
 #include <MFRC522.h>
 #include <SPI.h>
 #include <Wire.h>
